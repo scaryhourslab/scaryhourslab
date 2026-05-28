@@ -1,0 +1,1349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scary Hours Lab — Experimental Design Laboratory | Bogotá &amp; Atlanta</title>
+  <meta name="description" content="Scary Hours Lab is an experimental design laboratory based in Bogotá, Colombia and Atlanta, Georgia — offering brand identity, creative direction, miniature world-building, and spatial design for businesses locally and internationally.">
+  <meta name="keywords" content="brand identity Bogotá, diseño de marca Bogotá, creative direction Colombia, branding studio Atlanta, experimental design laboratory, miniature world-building, spatial design Colombia, Atlanta based photography, photography studio Atlanta, brand photography Atlanta, creative photography Colombia">
+
+  <link rel="canonical" href="https://scaryhourslab.com">
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="Scary Hours Lab — Experimental Design Laboratory">
+  <meta property="og:description" content="Scary Hours Lab is an experimental design laboratory based in Bogotá, Colombia and Atlanta, Georgia — offering brand identity, creative direction, miniature world-building, and spatial design for businesses locally and internationally.">
+  <meta property="og:image"       content="hero-img.png">
+  <meta property="og:url"         content="https://scaryhourslab.com">
+  <meta property="og:type"        content="website">
+
+  <!-- LocalBusiness schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Scary Hours Lab",
+    "description": "An experimental design laboratory",
+    "url": "https://scaryhourslab.com",
+    "location": [
+      {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Bogotá",
+          "addressCountry": "CO"
+        }
+      },
+      {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Atlanta",
+          "addressRegion": "GA",
+          "addressCountry": "US"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,900;1,400&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─────────────────────────────────────────
+       RESET & TOKENS
+    ───────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #000000;
+      --white:   #ffffff;
+      --green:   #C8FF00;
+      --dim:     #0a0a0a;
+      --muted:   rgba(255,255,255,0.35);
+      --hairline: rgba(255,255,255,0.07);
+
+      --display:  'Bebas Neue', sans-serif;
+      --serif:    'Playfair Display', serif;
+      --body:     'Space Grotesk', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--body);
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* hide native cursor everywhere */
+    *, a, button, input, textarea, select { cursor: none; }
+
+    /* ─────────────────────────────────────────
+       GRAIN OVERLAY
+    ───────────────────────────────────────── */
+    .grain {
+      position: fixed;
+      inset: 0;
+      z-index: 9990;
+      pointer-events: none;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+
+    /* ─────────────────────────────────────────
+       CUSTOM CURSOR
+    ───────────────────────────────────────── */
+    .cursor {
+      position: fixed;
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(200,255,0,0.65);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease;
+      will-change: transform;
+    }
+
+    .cursor-dot {
+      position: fixed;
+      width: 5px;
+      height: 5px;
+      background: var(--green);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 10000;
+      transform: translate(-50%, -50%);
+      will-change: transform;
+    }
+
+    .cursor.is-hover {
+      width: 68px;
+      height: 68px;
+      border-color: var(--green);
+    }
+
+    /* ─────────────────────────────────────────
+       NAV
+    ───────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 28px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: var(--body);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .nav-logo em {
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-link {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: var(--white); }
+
+    .nav-cta {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--green);
+      text-decoration: none;
+      padding: 10px 24px;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.8; }
+
+    /* ─────────────────────────────────────────
+       HERO
+    ───────────────────────────────────────── */
+    .hero {
+      position: relative;
+      z-index: 1;           /* paint above next section when words overflow */
+      height: 100vh;
+      min-height: 700px;
+      overflow: visible;    /* words must escape the box during parallax */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 48px 60px;
+    }
+
+    /* Parallax layer — moved by GSAP */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      top: -20%;
+      height: 140%;
+      z-index: 0;
+      overflow: hidden;     /* contain background so it doesn't bleed out */
+      will-change: transform;
+    }
+
+    .hero-bg-visual {
+      width: 100%;
+      height: 100%;
+      /* ── HERO IMAGE — set url() when path is provided ── */
+      background:
+        url('hero-img.png') center/cover no-repeat,
+        linear-gradient(160deg, #181818 0%, #080808 55%, #000000 100%);
+    }
+
+    .hero-bg-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0,0,0,1)  0%,
+        rgba(0,0,0,0.6) 35%,
+        rgba(0,0,0,0.15) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.42em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      line-height: 0.87;
+    }
+
+    /* Each line wraps the text in overflow:hidden for masked slide-up */
+    .hero-title .line {
+      display: block;
+      overflow: hidden;
+      will-change: transform;
+    }
+
+    .hero-title .line-inner {
+      display: block;
+    }
+
+    .line-1 .line-inner {
+      font-family: var(--display);
+      font-size: clamp(88px, 14.5vw, 232px);
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .line-2 .line-inner {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 900;
+      font-size: clamp(64px, 10.5vw, 168px);
+      color: var(--green);
+      padding-left: 2.5vw;
+      line-height: 1;
+    }
+
+    .line-3 .line-inner {
+      font-family: var(--display);
+      font-size: clamp(88px, 14.5vw, 232px);
+      text-transform: uppercase;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      text-align: right;
+    }
+
+    .hero-meta {
+      margin-top: 44px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .hero-location {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .hero-location strong {
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+    }
+
+    .hero-scroll {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .hero-scroll-line {
+      width: 36px;
+      height: 1px;
+      background: rgba(255,255,255,0.18);
+    }
+
+    /* ─────────────────────────────────────────
+       STATEMENT
+    ───────────────────────────────────────── */
+    .statement {
+      position: relative;
+      z-index: 2;
+      background: var(--black);
+      border-top: 1px solid var(--hairline);
+      padding: 136px 48px;
+    }
+
+    .section-label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 52px;
+    }
+
+    .statement-text {
+      font-family: var(--body);
+      font-weight: 700;
+      font-size: clamp(26px, 3.2vw, 52px);
+      line-height: 1.18;
+      color: var(--white);
+      max-width: 920px;
+    }
+
+    .statement-text em {
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ─────────────────────────────────────────
+       SERVICES
+    ───────────────────────────────────────── */
+    .services {
+      border-top: 1px solid var(--hairline);
+      padding: 100px 48px 140px;
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 72px;
+      gap: 24px;
+    }
+
+    .services-headline {
+      font-family: var(--display);
+      font-size: clamp(44px, 6vw, 90px);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--hairline);
+    }
+
+    .service-card {
+      background: var(--black);
+      padding: 52px 40px 56px;
+      transition: background 0.35s ease;
+    }
+
+    .service-card:hover { background: #0d0d0d; }
+
+    .service-num {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.18);
+      margin-bottom: 28px;
+      transition: color 0.35s;
+    }
+
+    .service-card:hover .service-num { color: var(--green); }
+
+    .service-name {
+      display: block;
+      font-family: var(--display);
+      font-size: clamp(44px, 5vw, 72px);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .service-tagline {
+      font-size: 14px;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.38);
+      margin-bottom: 40px;
+    }
+
+    .service-list {
+      list-style: none;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 28px;
+    }
+
+    .service-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      line-height: 1.4;
+    }
+
+    .service-list li::before {
+      content: '—';
+      color: var(--green);
+      flex-shrink: 0;
+      font-size: 11px;
+    }
+
+    /* ─────────────────────────────────────────
+       LAB CAPABILITIES
+    ───────────────────────────────────────── */
+    .lab-capabilities {
+      margin-top: 1px;
+      border-top: 1px solid var(--hairline);
+      padding: 52px 0 0;
+    }
+
+    .lab-capabilities-label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 20px;
+    }
+
+    .lab-capabilities-text {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      line-height: 2.2;
+      letter-spacing: 0.03em;
+    }
+
+    /* ─────────────────────────────────────────
+       BASE OF OPERATIONS
+    ───────────────────────────────────────── */
+    .base-ops {
+      position: relative;
+      z-index: 2;
+      background: var(--black);
+      border-top: 1px solid var(--hairline);
+      padding: 100px 48px;
+    }
+
+    .base-ops-text {
+      font-family: var(--body);
+      font-weight: 700;
+      font-size: clamp(22px, 2.4vw, 40px);
+      line-height: 1.3;
+      color: var(--white);
+      max-width: 860px;
+    }
+
+    /* ─────────────────────────────────────────
+       FILMSTRIP — pinned horizontal scroll
+    ───────────────────────────────────────── */
+    .filmstrip-section {
+      position: relative;
+      z-index: 2;
+      background: var(--black);
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .filmstrip-header {
+      position: absolute;
+      top: 40px;
+      left: 48px;
+      z-index: 3;
+    }
+
+    .filmstrip-heading {
+      font-family: var(--display);
+      font-size: clamp(28px, 3vw, 52px);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .filmstrip-track {
+      display: flex;
+      align-items: stretch;
+      gap: 3px;
+      height: 100vh;
+      will-change: transform;
+    }
+
+    .filmstrip-slide {
+      flex: 0 0 65vw;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .filmstrip-slide-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #1c1c1c 0%, #080808 100%);
+    }
+
+    .filmstrip-slide-label {
+      position: absolute;
+      bottom: 32px;
+      left: 32px;
+      font-size: 11px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      z-index: 1;
+    }
+
+    .filmstrip-slide img,
+    .filmstrip-slide video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ─────────────────────────────────────────
+       FEED
+    ───────────────────────────────────────── */
+    .feed {
+      border-top: 1px solid var(--hairline);
+      padding: 100px 0 140px;
+    }
+
+    .feed-header {
+      padding: 0 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 52px;
+    }
+
+    .feed-headline {
+      font-family: var(--display);
+      font-size: clamp(44px, 6vw, 90px);
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+      margin-top: 16px;
+    }
+
+    .feed-ig-link {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+      padding-bottom: 4px;
+    }
+
+    .feed-ig-link:hover { color: var(--green); }
+
+    /* ── Behold.so embed container ── */
+    .feed-embed {
+      padding: 0 48px;
+    }
+
+    /* ── Behold Instagram feed widget ── */
+    behold-widget {
+      --behold-gap: 3px;
+      --behold-background-color: #000000;
+      --behold-post-border-radius: 0px;
+      --behold-caption-font-family: 'Space Grotesk', sans-serif;
+      --behold-caption-color: rgba(255, 255, 255, 0.45);
+      --behold-username-color: rgba(255, 255, 255, 0.25);
+      --behold-heart-color: #C8FF00;
+      --behold-load-more-background: #000000;
+      --behold-load-more-color: rgba(255, 255, 255, 0.4);
+      --behold-load-more-border: 1px solid rgba(255, 255, 255, 0.07);
+      display: block;
+      width: 100%;
+      background: var(--black);
+    }
+
+    /* Mobile: single column, vertical stack, no horizontal scroll */
+    @media (max-width: 960px) {
+      behold-widget {
+        --behold-columns: 1;
+      }
+      .feed-embed {
+        overflow-x: hidden;
+      }
+    }
+
+    /* ─────────────────────────────────────────
+       FOOTER / CONTACT
+    ───────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--hairline);
+      padding: 88px 48px 56px;
+    }
+
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 72px;
+    }
+
+    .footer-wordmark {
+      font-family: var(--display);
+      font-size: clamp(36px, 4.5vw, 64px);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      line-height: 0.9;
+      color: var(--white);
+    }
+
+    .footer-wordmark em {
+      display: block;
+      font-style: normal;
+      color: var(--green);
+    }
+
+    .footer-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.28);
+      line-height: 1.65;
+      margin-top: 20px;
+      max-width: 260px;
+    }
+
+    .footer-col h4 {
+      font-size: 11px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 22px;
+    }
+
+    .footer-email {
+      display: block;
+      font-weight: 700;
+      font-size: 17px;
+      color: var(--white);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+
+    .footer-email:hover { color: var(--green); }
+
+    .footer-city {
+      font-size: 13px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .footer-social-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-social-list a {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: color 0.2s;
+    }
+
+    .footer-social-list a::before {
+      content: '↗';
+      font-size: 12px;
+      color: var(--green);
+    }
+
+    .footer-social-list a:hover { color: var(--white); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--hairline);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255,255,255,0.18);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-made {
+      font-size: 11px;
+      color: rgba(255,255,255,0.18);
+      letter-spacing: 0.06em;
+    }
+
+    /* ─────────────────────────────────────────
+       RESPONSIVE
+    ───────────────────────────────────────── */
+    @media (max-width: 960px) {
+      nav             { padding: 20px 24px; }
+      .nav-link       { display: none; }
+
+      .hero           { padding: 0 24px 44px; }
+
+      .statement      { padding: 88px 24px; }
+
+      .services       { padding: 80px 24px 100px; }
+      .services-header { flex-direction: column; gap: 12px; }
+      .services-grid  { grid-template-columns: 1fr; }
+
+      .feed           { padding: 80px 0 100px; }
+      .feed-header    { padding: 0 24px; }
+      .feed-embed     { padding: 0 24px; }
+
+      .base-ops       { padding: 80px 24px; }
+
+      .filmstrip-slide { flex: 0 0 88vw; }
+      .filmstrip-header { left: 24px; top: 28px; }
+
+      footer          { padding: 72px 24px 48px; }
+      .footer-inner   { grid-template-columns: 1fr; gap: 36px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-scroll    { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Texture -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- Custom cursor -->
+  <div class="cursor"     aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div>
+
+  <!-- ─── NAV ───────────────────────────────── -->
+  <nav>
+    <a href="#home" class="nav-logo">
+      <img src="SHL-logo.png" alt="Scary Hours Lab" width="180" height="auto" style="image-rendering:crisp-edges;image-rendering:-webkit-optimize-contrast;">
+    </a>
+    <div class="nav-links">
+      <a href="#services" class="nav-link">Services</a>
+      <a href="#work"     class="nav-link">Work</a>
+      <a href="#contact"  class="nav-cta">Experiment With Us</a>
+    </div>
+  </nav>
+
+  <!-- ─── HERO ──────────────────────────────── -->
+  <section class="hero" id="home">
+
+    <div class="hero-bg">
+      <div class="hero-bg-visual"></div>
+      <div class="hero-bg-overlay"></div>
+    </div>
+
+    <div class="hero-content">
+      <span class="hero-eyebrow">An experimental design laboratory</span>
+
+      <h1 class="hero-title" aria-label="Scary Hours Lab">
+        <span class="line line-1"><span class="line-inner">Scary</span></span>
+        <span class="line line-2"><span class="line-inner">Hours</span></span>
+        <span class="line line-3"><span class="line-inner">Lab</span></span>
+      </h1>
+
+      <div class="hero-meta">
+        <div class="hero-scroll">
+          <div class="hero-scroll-line"></div>
+          Scroll
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── STATEMENT ─────────────────────────── -->
+  <section class="statement" id="about">
+    <span class="section-label js-reveal">Manifesto</span>
+    <p class="statement-text js-reveal">
+      Every project is an experiment. Every experiment requires its own strategy.
+    </p>
+  </section>
+
+  <!-- ─── SERVICES ──────────────────────────── -->
+  <section class="services" id="services">
+    <div class="services-header">
+      <span class="section-label js-reveal">Our Tracks</span>
+      <h2 class="services-headline js-reveal">What We&nbsp;Offer</h2>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service-card">
+        <span class="service-num">01</span>
+        <span class="service-name">Build</span>
+        <p class="service-tagline">
+          We build the complete visual language for your project from the ground up — strategy first, execution second.
+        </p>
+      </article>
+
+      <article class="service-card">
+        <span class="service-num">02</span>
+        <span class="service-name">Transform</span>
+        <p class="service-tagline">
+          We study what exists, identify what's not working, and rebuild with intention.
+        </p>
+      </article>
+
+      <article class="service-card">
+        <span class="service-num">03</span>
+        <span class="service-name">Exhibit</span>
+        <p class="service-tagline">
+          We design the world your project lives in — digital, physical, and everything in between.
+        </p>
+      </article>
+
+    </div>
+
+    <div class="lab-capabilities">
+      <span class="lab-capabilities-label">Lab Capabilities</span>
+      <p class="lab-capabilities-text">
+        Brand strategy &amp; positioning · Visual identity design · Website design &amp; development · Brand audit &amp; diagnosis · Rebrand strategy · Identity overhaul · Website redesign · Creative direction · Campaign concepting · Social media strategy · Advertising creative · Miniature world-building · Photography · Graphic Design · Art Direction
+      </p>
+    </div>
+
+  </section>
+
+  <!-- ─── BASE OF OPERATIONS ─────────────────── -->
+  <section class="base-ops">
+    <span class="section-label js-reveal">Base of Operations</span>
+    <p class="base-ops-text js-reveal">
+      Scary Hours Lab is an experimental design laboratory operating between Colombia and the United States — working with businesses, creatives, and founders locally and internationally.
+    </p>
+  </section>
+
+  <!-- ─── FILMSTRIP ─────────────────────────── -->
+  <section class="filmstrip-section" id="work">
+    <div class="filmstrip-header">
+      <span class="section-label">Selected Work</span>
+      <h2 class="filmstrip-heading">Projects</h2>
+    </div>
+    <div class="filmstrip-track">
+      <div class="filmstrip-slide">
+        <img src="estona-bathroom-miniature-bogota.jpg" alt="Estona bathroom miniature — Bogotá" loading="lazy">
+        <span class="filmstrip-slide-label">Estona — Miniature World</span>
+      </div>
+      <div class="filmstrip-slide">
+        <video autoplay muted loop playsinline>
+          <source src="miniature-dj-pioneer-projection-mapping.mp4" type="video/mp4">
+        </video>
+        <span class="filmstrip-slide-label">Pioneer DJ — Projection Mapping</span>
+      </div>
+      <div class="filmstrip-slide">
+        <img src="miniature-zen-garden-brand-photography.jpg" alt="Miniature zen garden brand photography" loading="lazy">
+        <span class="filmstrip-slide-label">Zen Garden — Brand Photography</span>
+      </div>
+      <div class="filmstrip-slide">
+        <video autoplay muted loop playsinline>
+          <source src="miniature-kitchen-set-urmawm-gummies.mp4" type="video/mp4">
+        </video>
+        <span class="filmstrip-slide-label">Urmawm — Miniature Kitchen</span>
+      </div>
+      <div class="filmstrip-slide">
+        <img src="urmawm-mini-gummies-photography.jpg" alt="Urmawm mini gummies photography" loading="lazy">
+        <span class="filmstrip-slide-label">Urmawm — Product Photography</span>
+      </div>
+      <div class="filmstrip-slide">
+        <video autoplay muted loop playsinline>
+          <source src="miniature-concrete-incense-holder-bogota.mp4" type="video/mp4">
+        </video>
+        <span class="filmstrip-slide-label">Concrete Incense — Miniature</span>
+      </div>
+      <div class="filmstrip-slide">
+        <img src="shedesigns-logo-suite.jpg" alt="She Designs logo suite" loading="lazy">
+        <span class="filmstrip-slide-label">She Designs — Logo Suite</span>
+      </div>
+      <div class="filmstrip-slide">
+        <video autoplay muted loop playsinline>
+          <source src="shedesigns-making-of-logo.mp4" type="video/mp4">
+        </video>
+        <span class="filmstrip-slide-label">She Designs — Making Of</span>
+      </div>
+      <div class="filmstrip-slide">
+        <img src="shedesigns-business-cards-brand-identity.jpg" alt="She Designs business cards brand identity" loading="lazy">
+        <span class="filmstrip-slide-label">She Designs — Brand Identity</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FEED ───────────────────────────────── -->
+  <section class="feed" id="instagram">
+
+    <div class="feed-header">
+      <div>
+        <span class="section-label js-reveal">Selected Work</span>
+        <h2 class="feed-headline js-reveal">Feed</h2>
+      </div>
+      <a
+        href="https://instagram.com/scaryhourslab"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="feed-ig-link"
+      >View on Instagram ↗</a>
+    </div>
+
+    <div class="feed-embed">
+      <behold-widget feed-id="T8obUnExK76VpIhE7tsU"></behold-widget>
+      <script>
+        (() => {
+          const d=document,s=d.createElement("script");s.type="module";
+          s.src="https://w.behold.so/widget.js";d.head.append(s);
+        })();
+      </script>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER / CONTACT ──────────────────── -->
+  <footer id="contact">
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <div class="footer-wordmark">
+          Scary<br>Hours <em>Lab</em>
+        </div>
+        <p class="footer-desc">
+          An experimental design laboratory working between Bogotá, Colombia and Atlanta, Georgia — locally and internationally.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Get In Touch</h4>
+        <a href="mailto:scaryhoursclub8@gmail.com" class="footer-email">
+          scaryhoursclub8@gmail.com
+        </a>
+        <span class="footer-city">Bogotá, Colombia · Atlanta, Georgia</span>
+      </div>
+
+      <div class="footer-col">
+        <h4>Follow</h4>
+        <ul class="footer-social-list">
+          <li>
+            <a href="https://instagram.com/scaryhourslab" target="_blank" rel="noopener">
+              Instagram
+            </a>
+          </li>
+          <li>
+            <a href="https://www.behance.net/scaryhours-lab" target="_blank" rel="noopener">
+              Behance
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">© 2026 Scary Hours Lab. All rights reserved.</span>
+      <span class="footer-made">Built in Bogotá</span>
+    </div>
+  </footer>
+
+  <!-- ─── GSAP ───────────────────────────────── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ════════════════════════════════════════════
+       HERO ENTRANCE — masked title slide-up
+       (runs on page load, before any scroll)
+    ══════════════════════════════════════════════ */
+
+    const introTl = gsap.timeline({ delay: 0.15 });
+    introTl
+      .from('nav', {
+        y: -24, opacity: 0,
+        duration: 0.9, ease: 'power3.out'
+      })
+      .from('.hero-eyebrow', {
+        y: 16, opacity: 0,
+        duration: 0.7, ease: 'power3.out'
+      }, '-=0.35')
+      .from('.line-1 .line-inner', {
+        y: '105%',
+        duration: 1.0, ease: 'power4.out'
+      }, '-=0.4')
+      .from('.line-2 .line-inner', {
+        y: '105%',
+        duration: 1.0, ease: 'power4.out'
+      }, '-=0.75')
+      .from('.line-3 .line-inner', {
+        y: '105%',
+        duration: 1.0, ease: 'power4.out'
+      }, '-=0.75')
+      .from('.hero-meta', {
+        y: 20, opacity: 0,
+        duration: 0.8, ease: 'power3.out'
+      }, '-=0.45');
+
+    /* ════════════════════════════════════════════
+       HERO WORD CONVERGENCE PARALLAX
+       ────────────────────────────────────────────
+       Two phases, both driven by a single scrubbed
+       ScrollTrigger timeline (0 = hero top,
+       1 = hero bottom at viewport top):
+
+         0 → 0.5  Words converge from their
+                  scattered editorial positions
+                  to a single centred baseline.
+                  ease: power3.in — slow pull
+                  that snaps at the midpoint.
+
+         0.5 → 1  Words scatter outward and exit.
+                  ease: power2.out — elastic
+                  release from the centre.
+
+       Positions measured at runtime using the
+       Range API (getBoundingClientRect on a range
+       gives actual glyph bounds, not layout boxes —
+       critical for right-aligned LAB and the
+       padded Hours).
+
+       Initialised only after both:
+         • web fonts are fully rendered
+         • the entrance animation has completed
+       so measurements reflect real Bebas Neue /
+       Playfair metrics, not fallback fonts.
+    ══════════════════════════════════════════════ */
+
+    function initHeroParallax() {
+
+      // Allow words to travel freely beyond their clipping containers
+      document.querySelectorAll('.hero-title .line').forEach(function(l) {
+        l.style.overflow = 'visible';
+      });
+
+      var vw = window.innerWidth;
+      var vh = window.innerHeight;
+
+      // Simplified parallax for narrow viewports where words can't share one line
+      if (vw < 900) {
+        var st = { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 2 };
+        gsap.to('.hero-bg',            { yPercent: 14, scale: 1.06, ease: 'none', scrollTrigger: st });
+        gsap.to('.line-1 .line-inner', { y:  -50,         ease: 'none', scrollTrigger: st });
+        gsap.to('.line-2 .line-inner', { y:  -95, x:  22, ease: 'none', scrollTrigger: st });
+        gsap.to('.line-3 .line-inner', { y: -155,         ease: 'none', scrollTrigger: st });
+        gsap.to('.hero-eyebrow',       { x:  -60, opacity: 0, ease: 'none', scrollTrigger: st });
+        gsap.to('.hero-meta',          { x:   60, opacity: 0, ease: 'none', scrollTrigger: st });
+        return;
+      }
+
+      var el1 = document.querySelector('.line-1 .line-inner');
+      var el2 = document.querySelector('.line-2 .line-inner');
+      var el3 = document.querySelector('.line-3 .line-inner');
+
+      // ── MEASURE ──────────────────────────────────────────────
+      // Each word's layout box spans the full content width (block element),
+      // so getBoundingClientRect() gives the container, not the glyph bounds.
+      // An off-screen probe with matching computed styles gives exact text metrics.
+      function probeText(el) {
+        var cs = window.getComputedStyle(el);
+        var p  = document.createElement('span');
+        p.textContent = el.textContent;
+        p.setAttribute('style', [
+          'position:fixed', 'top:-9999px', 'left:-9999px',
+          'display:inline-block', 'visibility:hidden', 'white-space:nowrap',
+          'padding:0', 'margin:0', 'border:0',
+          'font-family:'    + cs.fontFamily,
+          'font-size:'      + cs.fontSize,
+          'font-style:'     + cs.fontStyle,
+          'font-weight:'    + cs.fontWeight,
+          'letter-spacing:' + cs.letterSpacing,
+          'text-transform:' + cs.textTransform,
+          'line-height:'    + cs.lineHeight,
+        ].join(';'));
+        document.body.appendChild(p);
+        var r = p.getBoundingClientRect();
+        document.body.removeChild(p);
+        return { w: r.width, h: r.height };
+      }
+
+      var t1 = probeText(el1); // SCARY
+      var t2 = probeText(el2); // Hours
+      var t3 = probeText(el3); // LAB
+
+      // Element layout boxes at scroll=0, post-entrance-animation
+      var b1 = el1.getBoundingClientRect();
+      var b2 = el2.getBoundingClientRect();
+      var b3 = el3.getBoundingClientRect();
+
+      // padding-left on Hours shifts where its text starts within the element box
+      var pad2 = parseFloat(window.getComputedStyle(el2).paddingLeft) || 0;
+
+      // Natural viewport left-edge of each word's visible glyphs:
+      //   SCARY  — left-aligned, no indent  → b1.left
+      //   Hours  — left-aligned + padding   → b2.left + pad2
+      //   LAB    — right-aligned            → b3.right − textWidth
+      var natLeft = [ b1.left, b2.left + pad2, b3.right - t3.w ];
+      var natTop  = [ b1.top,  b2.top,         b3.top          ];
+      var heights = [ t1.h,    t2.h,           t3.h            ];
+
+      // ── CONVERGENCE TARGET ────────────────────────────────────
+      var gap    = Math.max(12, Math.round(vw * 0.013));
+      var totalW = t1.w + t2.w + t3.w + gap * 2;
+      // Horizontally center the group; clamp so edges never clip the viewport
+      var groupX = Math.round(Math.max(8, Math.min((vw - totalW) / 2, vw - totalW - 8)));
+
+      // Shared baseline so all three bottoms align; group is vertically centred.
+      //
+      // CRITICAL: at scroll progress 0.5 (convergence moment) the hero section
+      // has scrolled upward by vh/2 — the element's viewport Y drops by vh/2
+      // due to normal document flow. dy must compensate with +vh/2 so the net
+      // viewport position lands at the intended target, not vh/2 above it.
+      var maxH     = Math.max(heights[0], heights[1], heights[2]);
+      var baseline = Math.round(vh / 2 + maxH / 2);
+
+      var targLeft = [
+        groupX,
+        groupX + t1.w + gap,
+        groupX + t1.w + gap + t2.w + gap,
+      ];
+      var targTop = [
+        baseline - heights[0],
+        baseline - heights[1],
+        baseline - heights[2],
+      ];
+
+      // dx: pure position delta (horizontal scroll offset is zero)
+      // dy: position delta + vh/2 scroll-offset compensation at p=0.5
+      var dx = targLeft.map(function(x, i) { return x - natLeft[i]; });
+      var dy = targTop.map(function(y, i)  { return y - natTop[i] + vh / 2; });
+
+      // ── EXIT TARGETS ──────────────────────────────────────────
+      // At p=1 scroll offset = vh, so ey needs an additional +vh/2 beyond dy
+      // (the extra scroll that happens between p=0.5 and p=1).
+      //   SCARY → upper-left | Hours → straight up | LAB → upper-right
+      var eDist  = Math.round(vh * 0.75);
+      var exitDx = [ -Math.round(vw * 0.33), 0, Math.round(vw * 0.33) ];
+      var exitDy = [ -eDist, -Math.round(eDist * 1.2), -eDist ];
+
+      var ex = dx.map(function(d, i) { return d + exitDx[i]; });
+      var ey = dy.map(function(d, i) { return d + vh / 2 + exitDy[i]; });
+
+      // ── SCROLL-DRIVEN TIMELINE ────────────────────────────────
+      var tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.hero',
+          start:   'top top',
+          end:     'bottom top',
+          scrub:   2,
+        }
+      });
+
+      var sels = ['.line-1 .line-inner', '.line-2 .line-inner', '.line-3 .line-inner'];
+
+      sels.forEach(function(sel, i) {
+        // Phase 1 (0→0.5): magnetic pull — sluggish start, snaps at midpoint
+        tl.to(sel, { x: dx[i], y: dy[i], duration: 0.5, ease: 'power3.in'  }, 0);
+        // Phase 2 (0.5→1): scatter — bursts from centre, trails off
+        tl.to(sel, { x: ex[i], y: ey[i], duration: 0.5, ease: 'power2.out' }, 0.5);
+      });
+
+      // Background: slow zoom + drift across the full scroll range
+      tl.to('.hero-bg', {
+        yPercent: 14, scale: 1.07,
+        transformOrigin: 'center center',
+        ease: 'none', duration: 1,
+      }, 0);
+
+      // Eyebrow: drifts left and fades during phase 1
+      tl.to('.hero-eyebrow', { x: -100, opacity: 0, ease: 'power2.in', duration: 0.4 }, 0);
+
+      // Meta: drifts right and fades during phase 2
+      tl.to('.hero-meta',    { x:  100, opacity: 0, ease: 'power2.in', duration: 0.4 }, 0.6);
+    }
+
+    // Wait for both fonts rendered (accurate probe metrics) AND the
+    // entrance animation complete (elements at their final positions).
+    Promise.all([
+      document.fonts.ready,
+      new Promise(function(resolve) {
+        introTl.eventCallback('onComplete', resolve);
+      }),
+    ]).then(initHeroParallax);
+
+    /* ────────────────────────────────────────────
+       SCROLL REVEAL — generic elements
+    ──────────────────────────────────────────── */
+    gsap.utils.toArray('.js-reveal').forEach((el) => {
+      gsap.from(el, {
+        y: 48,
+        opacity: 0,
+        duration: 1.0,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 82%',
+          once: true
+        }
+      });
+    });
+
+    /* ────────────────────────────────────────────
+       SERVICE CARDS — staggered reveal
+    ──────────────────────────────────────────── */
+    gsap.from('.service-card', {
+      y: 64,
+      opacity: 0,
+      duration: 0.9,
+      stagger: 0.14,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '.services-grid',
+        start: 'top 78%',
+        once: true
+      }
+    });
+
+    /* ────────────────────────────────────────────
+       FOOTER REVEAL
+    ──────────────────────────────────────────── */
+    gsap.from('.footer-inner > *', {
+      y: 36,
+      opacity: 0,
+      duration: 0.9,
+      stagger: 0.12,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: 'footer',
+        start: 'top 85%',
+        once: true
+      }
+    });
+
+    /* ────────────────────────────────────────────
+       FILMSTRIP — pinned horizontal scroll
+    ──────────────────────────────────────────── */
+    (function () {
+      const track = document.querySelector('.filmstrip-track');
+      if (!track) return;
+
+      gsap.to(track, {
+        x: () => -(track.scrollWidth - window.innerWidth),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.filmstrip-section',
+          start: 'top top',
+          end: () => '+=' + (track.scrollWidth - window.innerWidth),
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        }
+      });
+    })();
+
+    /* ────────────────────────────────────────────
+       CUSTOM CURSOR
+    ──────────────────────────────────────────── */
+    const cursorRing = document.querySelector('.cursor');
+    const cursorDot  = document.querySelector('.cursor-dot');
+
+    document.addEventListener('mousemove', (e) => {
+      gsap.to(cursorRing, {
+        x: e.clientX, y: e.clientY,
+        duration: 0.45, ease: 'power2.out'
+      });
+      gsap.to(cursorDot, {
+        x: e.clientX, y: e.clientY,
+        duration: 0.08
+      });
+    });
+
+    const hoverTargets = document.querySelectorAll(
+      'a, button, .service-card, .feed-tile'
+    );
+    hoverTargets.forEach((el) => {
+      el.addEventListener('mouseenter', () => cursorRing.classList.add('is-hover'));
+      el.addEventListener('mouseleave', () => cursorRing.classList.remove('is-hover'));
+    });
+
+    document.addEventListener('mouseleave', () => {
+      gsap.to([cursorRing, cursorDot], { opacity: 0, duration: 0.2 });
+    });
+    document.addEventListener('mouseenter', () => {
+      gsap.to([cursorRing, cursorDot], { opacity: 1, duration: 0.2 });
+    });
+
+  </script>
+
+</body>
+</html>
