@@ -7,6 +7,8 @@
   <meta name="description" content="Scary Hours Lab is an experimental design laboratory based in Bogotá, Colombia and Atlanta, Georgia — offering brand identity, creative direction, miniature world-building, and spatial design for businesses locally and internationally.">
   <meta name="keywords" content="brand identity Bogotá, diseño de marca Bogotá, creative direction Colombia, branding studio Atlanta, experimental design laboratory, miniature world-building, spatial design Colombia, Atlanta based photography, photography studio Atlanta, brand photography Atlanta, creative photography Colombia">
 
+  <link rel="icon" type="image/png" href="favicon-SHL.png">
+  <link rel="apple-touch-icon" href="favicon-SHL.png">
   <link rel="canonical" href="https://scaryhourslab.com">
 
   <!-- Open Graph -->
@@ -540,7 +542,7 @@
       height: 100vh;
       position: relative;
       overflow: hidden;
-      background: #111;
+      background: #000000;
     }
 
     .filmstrip-slide-bg {
@@ -567,6 +569,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      background-color: #000000;
     }
 
     /* ─────────────────────────────────────────
@@ -770,8 +773,10 @@
 
       .base-ops       { padding: 80px 24px; }
 
-      .filmstrip-slide { flex: 0 0 88vw; }
-      .filmstrip-header { left: 24px; top: 28px; }
+      .filmstrip-section { height: auto; overflow: visible; }
+      .filmstrip-track   { flex-direction: column; height: auto; gap: 3px; }
+      .filmstrip-slide   { flex: 0 0 auto; width: 100%; height: 75vw; }
+      .filmstrip-header  { position: relative; top: auto; left: auto; padding: 28px 24px 20px; }
 
       footer          { padding: 72px 24px 48px; }
       .footer-inner   { grid-template-columns: 1fr; gap: 36px; }
@@ -1295,6 +1300,7 @@
     (function () {
       const track = document.querySelector('.filmstrip-track');
       if (!track) return;
+      if (window.innerWidth < 960) return;
 
       gsap.to(track, {
         x: () => -(track.scrollWidth - window.innerWidth),
@@ -1325,12 +1331,20 @@
       let pending = slides.length;
 
       function applyAspect(slide, w, h) {
-        slide.style.flex = (w > h) ? '0 0 85vw' : '0 0 65vw';
-        if (--pending === 0) ScrollTrigger.refresh();
+        if (window.innerWidth >= 960) {
+          slide.style.flex = (w > h) ? '0 0 85vw' : '0 0 65vw';
+          if (--pending === 0) ScrollTrigger.refresh();
+        } else {
+          --pending;
+        }
       }
 
       function skip() {
-        if (--pending === 0) ScrollTrigger.refresh();
+        if (window.innerWidth >= 960) {
+          if (--pending === 0) ScrollTrigger.refresh();
+        } else {
+          --pending;
+        }
       }
 
       slides.forEach(function (slide) {
