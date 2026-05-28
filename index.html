@@ -1312,6 +1312,52 @@
     })();
 
     /* ────────────────────────────────────────────
+       FILMSTRIP — aspect-ratio slide sizing
+       Landscape media → 85vw, portrait → 65vw.
+       Calls ScrollTrigger.refresh() once all
+       slides have reported their dimensions so
+       the horizontal scroll distance stays exact.
+    ──────────────────────────────────────────── */
+    (function () {
+      const slides = document.querySelectorAll('.filmstrip-slide');
+      if (!slides.length) return;
+
+      let pending = slides.length;
+
+      function applyAspect(slide, w, h) {
+        slide.style.flex = (w > h) ? '0 0 85vw' : '0 0 65vw';
+        if (--pending === 0) ScrollTrigger.refresh();
+      }
+
+      function skip() {
+        if (--pending === 0) ScrollTrigger.refresh();
+      }
+
+      slides.forEach(function (slide) {
+        const img   = slide.querySelector('img');
+        const video = slide.querySelector('video');
+
+        if (img) {
+          if (img.complete && img.naturalWidth) {
+            applyAspect(slide, img.naturalWidth, img.naturalHeight);
+          } else {
+            img.addEventListener('load',  function () { applyAspect(slide, img.naturalWidth, img.naturalHeight); });
+            img.addEventListener('error', skip);
+          }
+        } else if (video) {
+          if (video.videoWidth) {
+            applyAspect(slide, video.videoWidth, video.videoHeight);
+          } else {
+            video.addEventListener('loadedmetadata', function () { applyAspect(slide, video.videoWidth, video.videoHeight); });
+            video.addEventListener('error', skip);
+          }
+        } else {
+          skip();
+        }
+      });
+    })();
+
+    /* ────────────────────────────────────────────
        CUSTOM CURSOR
     ──────────────────────────────────────────── */
     const cursorRing = document.querySelector('.cursor');
