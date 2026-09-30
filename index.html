@@ -761,6 +761,116 @@
     }
 
     /* ─────────────────────────────────────────
+       WEB DESIGN
+    ───────────────────────────────────────── */
+    .web-design {
+      border-top: 1px solid var(--hairline);
+      padding: 100px 0 100px;
+    }
+
+    .web-design-inner {
+      padding: 0 48px;
+    }
+
+    .web-design-intro {
+      font-size: 15px;
+      color: rgba(255,255,255,0.4);
+      margin: 0 0 56px;
+      max-width: 480px;
+      line-height: 1.65;
+    }
+
+    .web-design-strip-wrap {
+      overflow-x: auto;
+      padding: 0 48px;
+      margin-bottom: 56px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .web-design-strip-wrap::-webkit-scrollbar { display: none; }
+
+    .web-design-strip {
+      display: flex;
+      gap: 3px;
+      width: max-content;
+    }
+
+    .web-card {
+      width: clamp(300px, 38vw, 520px);
+      flex-shrink: 0;
+    }
+
+    .web-card-browser {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      background: #0e0e0e;
+      border: 1px solid rgba(255,255,255,0.07);
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 22px;
+      overflow: hidden;
+    }
+
+    .web-card-titlebar {
+      background: #181818;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+
+    .web-card-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .web-card-dot:nth-child(1) { background: rgba(255, 95,  86,  0.5); }
+    .web-card-dot:nth-child(2) { background: rgba(254, 188, 46,  0.5); }
+    .web-card-dot:nth-child(3) { background: rgba(40,  200, 64,  0.5); }
+
+    .web-card-body {
+      flex: 1;
+      background: #0e0e0e;
+      overflow: hidden;
+    }
+
+    .web-card-body img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .web-card-name {
+      display: block;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .web-card-desc {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .web-design-services {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+      margin-top: 0;
+    }
+
+    /* ─────────────────────────────────────────
        RESPONSIVE
     ───────────────────────────────────────── */
     @media (max-width: 960px) {
@@ -788,6 +898,10 @@
 
       footer          { padding: 72px 24px 48px; }
       .footer-inner   { grid-template-columns: 1fr; gap: 36px; }
+
+      .web-design-inner       { padding: 0 24px; }
+      .web-design-strip-wrap  { padding: 0 24px; }
+      .web-card               { width: 85vw; }
     }
 
     @media (max-width: 480px) {
@@ -890,6 +1004,71 @@
       <p class="lab-capabilities-text">
         Brand strategy &amp; positioning · Visual identity design · Website design &amp; development · Brand audit &amp; diagnosis · Rebrand strategy · Identity overhaul · Website redesign · Creative direction · Campaign concepting · Social media strategy · Advertising creative · Miniature world-building · Photography · Graphic Design · Art Direction
       </p>
+    </div>
+
+  </section>
+
+  <!-- ─── WEB DESIGN ──────────────────────────── -->
+  <section class="web-design" id="web-design">
+
+    <div class="web-design-inner">
+      <h2 class="section-label js-reveal">Web Design</h2>
+      <p class="web-design-intro js-reveal">From concept to deployment — custom websites built for creative businesses and founders.</p>
+    </div>
+
+    <div class="web-design-strip-wrap">
+      <div class="web-design-strip">
+
+        <div class="web-card">
+          <div class="web-card-browser">
+            <div class="web-card-titlebar">
+              <span class="web-card-dot"></span>
+              <span class="web-card-dot"></span>
+              <span class="web-card-dot"></span>
+            </div>
+            <div class="web-card-body">
+              <img src="web-urmawm.png" alt="Urmawm website" loading="lazy">
+            </div>
+          </div>
+          <span class="web-card-name">Urmawm</span>
+          <span class="web-card-desc">Hemp wellness brand · Custom build</span>
+        </div>
+
+        <div class="web-card">
+          <div class="web-card-browser">
+            <div class="web-card-titlebar">
+              <span class="web-card-dot"></span>
+              <span class="web-card-dot"></span>
+              <span class="web-card-dot"></span>
+            </div>
+            <div class="web-card-body">
+              <img src="web-saltpepperketchup.png" alt="Salt Pepper Ketchup website" loading="lazy">
+            </div>
+          </div>
+          <span class="web-card-name">Salt Pepper Ketchup</span>
+          <span class="web-card-desc">Creative agency · Custom build</span>
+        </div>
+
+        <div class="web-card">
+          <div class="web-card-browser">
+            <div class="web-card-titlebar">
+              <span class="web-card-dot"></span>
+              <span class="web-card-dot"></span>
+              <span class="web-card-dot"></span>
+            </div>
+            <div class="web-card-body">
+              <img src="web-melsuarez.png" alt="Mel Suárez website" loading="lazy">
+            </div>
+          </div>
+          <span class="web-card-name">Mel Suárez</span>
+          <span class="web-card-desc">Product design portfolio · Custom build</span>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="web-design-inner">
+      <span class="web-design-services js-reveal">Custom Site Builds · Landing Pages · SEO · Maintenance</span>
     </div>
 
   </section>
