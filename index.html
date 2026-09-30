@@ -873,6 +873,75 @@
     }
 
     /* ─────────────────────────────────────────
+       PHOTOGRAPHY
+    ───────────────────────────────────────── */
+    .photography {
+      border-top: 1px solid var(--hairline);
+      padding: 100px 0 100px;
+    }
+
+    .photography-inner {
+      padding: 0 48px;
+    }
+
+    .photography-heading {
+      font-family: var(--display);
+      font-size: clamp(44px, 6vw, 90px);
+      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .photography-intro {
+      font-size: 15px;
+      color: rgba(255,255,255,0.4);
+      margin: 0 0 56px;
+      max-width: 560px;
+      line-height: 1.65;
+    }
+
+    .photo-strip-wrap {
+      overflow-x: auto;
+      padding: 0 48px;
+      margin-bottom: 56px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .photo-strip-wrap::-webkit-scrollbar { display: none; }
+
+    .photo-strip {
+      display: flex;
+      gap: 3px;
+      width: max-content;
+    }
+
+    .photo-card {
+      width: clamp(300px, 38vw, 520px);
+      aspect-ratio: 4 / 5;
+      flex-shrink: 0;
+      overflow: hidden;
+      border-radius: 4px;
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .photography-services {
+      display: block;
+      font-size: 11px;
+      letter-spacing: 0.34em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.22);
+    }
+
+    /* ─────────────────────────────────────────
        RESPONSIVE
     ───────────────────────────────────────── */
     @media (max-width: 960px) {
@@ -904,6 +973,10 @@
       .web-design-inner       { padding: 0 24px; }
       .web-design-strip-wrap  { padding: 0 24px; }
       .web-card               { width: 85vw; }
+
+      .photography-inner      { padding: 0 24px; }
+      .photo-strip-wrap       { padding: 0 24px; }
+      .photo-card             { width: 85vw; }
     }
 
     @media (max-width: 480px) {
@@ -1071,6 +1144,44 @@
 
     <div class="web-design-inner">
       <span class="web-design-services js-reveal">Custom Site Builds · Landing Pages · SEO · Maintenance</span>
+    </div>
+
+  </section>
+
+  <!-- ─── PHOTOGRAPHY ─────────────────────────── -->
+  <section class="photography" id="photography">
+
+    <div class="photography-inner">
+      <span class="section-label js-reveal">The Lab Eye</span>
+      <h2 class="photography-heading js-reveal">Photography</h2>
+      <p class="photography-intro js-reveal">Documenting the world through an experimental lens — miniature worlds, brand photography, and everything in between. Available for shoots in Atlanta.</p>
+    </div>
+
+    <div class="photo-strip-wrap">
+      <div class="photo-strip">
+        <div class="photo-card"><img src="IMG_6164.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_2775.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_5030.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_6365.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_1448.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_6673.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_2244.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_2405.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_0039.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_4666.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_2050.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_6500.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_0595.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_9111.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_4655.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_9511.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_4099.jpeg" alt="" loading="lazy"></div>
+        <div class="photo-card"><img src="IMG_2722.jpeg" alt="" loading="lazy"></div>
+      </div>
+    </div>
+
+    <div class="photography-inner">
+      <span class="photography-services js-reveal">Film (35mm, Medium Format) · Digital · Studio Lighting · On Location · In Studio · Lifestyle · Editorial · Product · Events · Capture One · Photoshop · Lightroom</span>
     </div>
 
   </section>
